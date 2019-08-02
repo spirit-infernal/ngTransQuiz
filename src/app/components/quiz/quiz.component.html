@@ -1,0 +1,63 @@
+<div class="quiz container">
+  <div class="row">
+    <div class="grid">
+      <div class="inGrid">
+        <mat-card class="quiz mat-elevation-z2">
+          <mat-card-content>
+            <p *ngIf="showLoad" style="display: block">Загрузка слов</p>
+            <mat-horizontal-stepper linear="true" #stepper *ngIf="!resultsShow">
+              <div *ngFor='let form of quizArray.controls; let i = index'>
+              <mat-step [stepControl]="form">
+                <form [formGroup]="form" (ngSubmit)='stepNext(form)' [ngClass]="{hidden: i > 5}">
+                  <ng-template matStepLabel>{{ form.get('currentWord').value }}</ng-template>
+                  <p>Слово "{{ form.get('currentWord').value }}" переводится как: </p>
+                  <input id="currWord" type="hidden" formControlName="key">
+
+                  <div formGroupName="translations">
+                    <mat-radio-group>
+                      <div *ngFor="let tr of form.get('translations').value;">
+                      <mat-radio-button
+                        [value]="tr.trKey"
+                        (click)='patchResult(tr.trKey)'>
+                        {{tr.trTranslation}}
+                      </mat-radio-button>
+                    </div>
+                    </mat-radio-group>
+
+                    </div>
+                  <div>
+                    <button mat-button matStepperPrevious>Назад</button>
+                    <button mat-button matStepperNext="check">Вперёд</button>
+                    </div>
+                </form>
+              </mat-step>
+            </div>
+            <mat-step>
+                <form (ngSubmit)="checkResults()">
+                    <p>Спасибо за участие!</p>
+                    <button mat-button>Результаты</button>
+                  </form>
+            </mat-step>>
+            </mat-horizontal-stepper>
+            <div class="results" *ngIf="resultsShow">
+              <p>Результаты</p>
+              <ul *ngFor="let result of resultsArray">
+                <li [ngClass]="{correct: result.questionWordTranslation === result.answerWordTranslation, incorrect: result.questionWordTranslation !== result.answerWordTranslation }">
+                  <p *ngIf="result.questionWordTranslation === result.answerWordTranslation">
+                      Слово <span>{{ result.questionWord }}</span> переводится как <span>{{ result.questionWordTranslation }}</span> <br/>
+                      Вы выбрали верный вариант
+                  </p>
+
+                  <p *ngIf="result.questionWordTranslation !== result.answerWordTranslation">
+                      Слово <span>{{ result.questionWord }}</span> переводится как <span>{{ result.questionWordTranslation }}</span> <br/>
+                      Вы выбрали вариант <span>{{ result.answerWord }}</span>, что переводится как <span>{{ result.answerWordTranslation }}</span>
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

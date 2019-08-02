@@ -1,0 +1,62 @@
+<div class="crud container">
+  <div class="row">
+    <div class="grid">
+      <div class="inGrid">
+        <mat-card class="wordForm mat-elevation-z2">
+        <mat-card-header>
+          <mat-card-title>Добавить слово</mat-card-title>
+          <mat-card-subtitle></mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <form #wordForm="ngForm" (ngSubmit)="onSubmit()">
+            <input
+            type="hidden"
+            name="key"
+            #key="ngModel"
+            [(ngModel)]="selectedWord.key">
+            <mat-form-field>
+              <input
+              matInput
+              placeholder="Введите слово"
+              name="word"
+              #word="ngModel"
+              [(ngModel)]="selectedWord.word">
+            </mat-form-field>
+            <mat-form-field>
+              <input
+              matInput
+              placeholder="Введите перевод"
+              name="translation"
+              #translation="ngModel" [(ngModel)]="selectedWord.translation">
+            </mat-form-field>
+            <button
+            mat-button
+            type="submit">
+            Отправить <mat-icon>input</mat-icon>
+          </button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+        <mat-card class="list-card mat-elevation-z2">
+          <mat-card-header>
+            <mat-card-title>Текущие слова в базе ({{words.length}} шт.): </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <ul class="wordlist">
+              <li *ngFor="let word of words">
+                <p>
+                  <span>Слово: </span>{{ word.word }}
+                  <span>Перевод: </span> {{word.translation}}
+                </p>
+                <button mat-mini-fab color="primary" (click)="editWord(word)"><mat-icon>mode_edit</mat-icon>
+                </button>
+                <button mat-mini-fab color="primary" (click)="deleteWord(word.key)"><mat-icon>delete</mat-icon>
+                </button>
+              </li>
+            </ul>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

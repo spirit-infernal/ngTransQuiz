@@ -1,0 +1,37 @@
+.quiz {
+  .grid {
+    width: 100%;
+  .inGrid {
+    mat-card {
+      margin: 2rem 10%;
+      height: auto;
+      width: 80%;
+      max-height: 480px;
+      mat-radio-button {
+        display: block;
+        margin: 1rem auto;
+      }
+      .hidden {
+        display: none;
+      }
+      ul {
+        li {
+          height: 30px;
+          line-height: 1;
+        }
+        .correct {
+            span {
+              color: #69f0ae;
+            }
+          }
+
+        .incorrect {
+          span {
+            color: red;
+          }
+        }
+      }
+    }
+  }
+  }
+}

@@ -1,0 +1,26 @@
+.example-fill-remaining-space {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+.logo {
+  height: 56px;
+  width: auto;
+  position: relative;
+  display: inline-block;
+  margin: auto 0;
+}
+.mat-icon-button {
+  margin: auto 0;
+}
+a {
+  color: #fff;
+  align-items: center;
+  display: flex;
+  &:hover {
+    text-decoration: none !important;
+  }
+}
+mat-progress-bar {
+  bottom: 0;
+}

@@ -1,0 +1,19 @@
+<mat-toolbar color="primary" class="mat-elevation-z6">
+  <mat-toolbar-row>
+    <div class="container">
+      <div class="row">
+        <a [routerLink]="'/'" (click)="progbar.routeChange()"><img class="logo" [src]=logo alt="">ngTransQuiz</a>
+        <span class="example-fill-remaining-space"></span>
+        <mat-menu #appMenu="matMenu">
+          <button mat-menu-item [routerLink]="'/vocabulary'" (click)="progbar.routeChange()">Словарь</button>
+          <button mat-menu-item [routerLink]="'quiz'" (click)="progbar.routeChange()">Квиз</button>
+        </mat-menu>
+        <button mat-icon-button [matMenuTriggerFor]="appMenu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<app-prog-bar #progbar></app-prog-bar>
